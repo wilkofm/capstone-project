@@ -18,6 +18,22 @@ Main Branch
 
 Back end
 
+MySQL Database branch
+
+- This is the branch where I will set up and implement the code that will run the database
+
+Models branch
+
+- This is the branch where I will create the models in my database
+
+Routes branch
+
+- This is the branch where I will create the routes in my database
+
+Controllers branch
+
+- This is the branch where I will create the controllers in my database
+
 Front End
 
 Landing-Page Branch
@@ -30,6 +46,10 @@ Card-List Branch
 
 - Where I set up the homepage and the inital card list that pulls the list of movies from my backend API
 
+Card List Styling Branch
+
+- Branch where I set up Tailwind CSS and begin my initial styling on the page, making sure the card list is formatted correctly
+
 Feature/Filter Branch
 
 - Branch where I create the ability to search and filter each film based on the movie genre, year or rating.
@@ -39,17 +59,25 @@ Rate/Review Branch
 
 - This is where I set up the clickable movie page/popup where the user can rate, review and add the movie to their watchlist
 
-Watchlist branch
+Rate/Review Styling Branch
 
-- This is the branch where I set up the user watchlist page that displays their saved movies
+- This is where I begin my initial styling on the movie page to ensure everything is formatted correctly
 
-Styling Branch
+Watch list Branch
 
-- Branch where I style and make everything look aesthetically pleasing
+- This is the branch where I set up the user watch list page that displays their saved movies
 
-Dark mode branch
+Watch list Styling Branch
 
-- Where I will add the ablility to switch to darkmode
+- This is where I begin my initial styling on the watch list page to ensure everything is formatted correctly
+
+Dark Mode Feature Branch
+
+- This is where I implement the ability to switch to dark mode and change the theme of the page
+
+Additional Styling Branch
+
+- This is the brand where I finalize styling and ensure the page is mobile-friendly
 
 # Styling Goals
 
@@ -57,8 +85,16 @@ I want the site to have a minimal, clean feel, some references are MUBI and Lett
 
 Here are a few styling features I’d like to implement:
 
-- Interesting Font
-- Icons (icons for pages like homepage, watchlist, dark mode switch)
-- Resizing card/images so everything is uniform, clean layout
+- Tailwind CSS to style the page
+- Clean layout
+- A Logo
+- Icons
+- Dedicated Font
+- A nav-bar to house the filter options
+- Resizing card/images so everything is uniform
 
 # How To Implement This Project Yourself
+
+- Import the files within this GitHub project into your development environment
+- Install relevant packages to run this project (sequelize, mysql)
+- Update the .env with your database details

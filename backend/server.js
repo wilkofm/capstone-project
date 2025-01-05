@@ -2,20 +2,20 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 let dbConnect = require("./dbConnect");
-let albumRoutes = require("./routes/albumRoutes");
-let artistRoutes = require("./routes/artistRoutes");
+let movieRoutes = require("./routes/movieRoutes");
 let reviewRoutes = require("./routes/reviewRoutes");
 let userRoutes = require("./routes/userRoutes");
+let watchlistRoutes = require("./routes/watchlistRoutes");
 
 // parse requests of content-type - application / json;
 app.use(express.json());
-app.use("/api/albums", albumRoutes);
-app.use("/api/artists", artistRoutes);
+app.use("/api/movies", movieRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/watchlists", watchlistRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to my album reviewer database." });
+  res.json({ message: "Welcome to my movie collection database." });
 });
 
 // set port, listen for requests

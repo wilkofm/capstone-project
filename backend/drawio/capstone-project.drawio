@@ -25,7 +25,7 @@
         <mxCell id="fMXuNrvXQG_GhTWxaBoO-7" value="Movie" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="480" y="120" width="160" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="fMXuNrvXQG_GhTWxaBoO-8" value="Movie ID (PK)&lt;div&gt;Title&lt;/div&gt;&lt;div&gt;Genre&lt;/div&gt;&lt;div&gt;Year&lt;/div&gt;&lt;div&gt;IMDB Rating&lt;/div&gt;&lt;div&gt;Director&lt;/div&gt;&lt;div&gt;Cast&lt;/div&gt;&lt;div&gt;Description&lt;/div&gt;&lt;div&gt;Trailer&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="fMXuNrvXQG_GhTWxaBoO-8" value="Movie ID (PK)&lt;div&gt;Poster&lt;br&gt;&lt;div&gt;Title&lt;/div&gt;&lt;div&gt;Genre&lt;/div&gt;&lt;div&gt;Year&lt;/div&gt;&lt;div&gt;IMDB Rating&lt;/div&gt;&lt;div&gt;Director&lt;/div&gt;&lt;div&gt;Cast&lt;/div&gt;&lt;div&gt;Description&lt;/div&gt;&lt;div&gt;Trailer&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="480" y="160" width="160" height="160" as="geometry" />
         </mxCell>
         <mxCell id="fMXuNrvXQG_GhTWxaBoO-9" value="Redis" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -136,7 +136,7 @@
         <mxCell id="cfAbQgOyNFW1cMsDX7i4-7" value="Movie" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="480" y="120" width="180" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cfAbQgOyNFW1cMsDX7i4-8" value="Movie ID: INTEGER AUTO INCREMENT&lt;div&gt;Title: VARCHAR(255) NOT NULL&lt;/div&gt;&lt;div&gt;Genre: VARCHAR(255)&lt;/div&gt;&lt;div&gt;Year: INTEGER CHECK&lt;/div&gt;&lt;div&gt;IMDB Rating: DECIMAL CHECK&lt;/div&gt;&lt;div&gt;Director: VARCHAR(255)&lt;/div&gt;&lt;div&gt;Cast: TEXT&lt;/div&gt;&lt;div&gt;Description: TEXT&lt;/div&gt;&lt;div&gt;Trailer: VARCHAR(500)&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="cfAbQgOyNFW1cMsDX7i4-8" value="Movie ID: INTEGER AUTO INCREMENT&lt;div&gt;Poster: VARCHAR(500)&lt;br&gt;&lt;div&gt;Title: VARCHAR(255) NOT NULL&lt;/div&gt;&lt;div&gt;Genre: VARCHAR(255)&lt;/div&gt;&lt;div&gt;Year: INTEGER CHECK&lt;/div&gt;&lt;div&gt;IMDB Rating: DECIMAL CHECK&lt;/div&gt;&lt;div&gt;Director: VARCHAR(255)&lt;/div&gt;&lt;div&gt;Cast: TEXT&lt;/div&gt;&lt;div&gt;Description: TEXT&lt;/div&gt;&lt;div&gt;Trailer: VARCHAR(500)&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="480" y="160" width="180" height="180" as="geometry" />
         </mxCell>
         <mxCell id="cfAbQgOyNFW1cMsDX7i4-9" value="Redis" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">

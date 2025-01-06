@@ -23,4 +23,9 @@ userRouter.delete("/:id", (req, res) => {
   Controllers.userController.deleteUser(req, res);
 });
 
+//Join requests
+userRouter.get("/details", (req, res) => {
+  Controllers.userController.getUserWithDetails(req, res);
+});
+
 module.exports = userRouter;

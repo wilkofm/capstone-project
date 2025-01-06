@@ -5,7 +5,7 @@ const Controllers = require("../controllers");
 
 // (the prefix from server.js)
 userRouter.get("/", (req, res) => {
-  Controllers.userController.getUsers(res);
+  Controllers.userController.getUsers(req, res);
 });
 
 // matches POST requests sent to /api/users/create

@@ -4,7 +4,7 @@ const Controllers = require("../controllers");
 
 // (the prefix from server.js)
 movieRouter.get("/", (req, res) => {
-  Controllers.movieController.getMovies(res);
+  Controllers.movieController.getMovies(req, res);
 });
 
 // matches POST requests sent to /api/users/create

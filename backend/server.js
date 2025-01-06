@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-let dbConnect = require("./dbConnect");
+require("./dbConnect");
 let movieRoutes = require("./routes/movieRoutes");
 let reviewRoutes = require("./routes/reviewRoutes");
 let userRoutes = require("./routes/userRoutes");
@@ -18,9 +18,14 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to my movie collection database." });
 });
 
+//error handling
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({ error: "Something went wrong" });
+});
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running on port
-${PORT}.`);
+  console.log(`Server is running on port ${PORT}.`);
 });

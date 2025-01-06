@@ -11,16 +11,6 @@ const sequelize = new Sequelize(
   }
 );
 
-const sequelizeInstance = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    dialect: "mysql",
-  }
-);
-
 const connectMysql = async () => {
   try {
     await sequelize.authenticate();
@@ -35,5 +25,4 @@ ${process.env.DB_NAME}`);
 connectMysql();
 module.exports = {
   sequelize,
-  sequelizeInstance,
 };

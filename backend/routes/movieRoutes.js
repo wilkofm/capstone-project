@@ -9,7 +9,7 @@ movieRouter.get("/", (req, res) => {
 
 // matches POST requests sent to /api/users/create
 movieRouter.post("/create", (req, res) => {
-  Controllers.movieController.createMovie(req.body, res);
+  Controllers.movieController.createMovie(req, res);
 });
 
 // matches PUT requests to /api/users/123

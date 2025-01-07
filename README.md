@@ -1,12 +1,12 @@
 # capstone-project
 
-Movie Tracker
+CineMax
 
 # Project Outline
 
 What Do I Want To Make?
 
-A web app where users can track their movie watching habits. Users can create an account or log in, search for movies and filter movies based on genre, year, ratings etc. They can also rate and review movies, as well as add movies to their personal watch list.
+CineMax is a web app where users can track their movie watching habits. Users can create an account or log in, search for movies and filter movies based on genre, year, ratings etc. They can also rate and review movies, as well as add movies to their personal watch list.
 
 # Github
 

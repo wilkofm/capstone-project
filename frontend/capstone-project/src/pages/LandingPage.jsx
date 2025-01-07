@@ -15,7 +15,7 @@ const LandingPage = () => {
 
   return (
     <div>
-      <h1>Welcome To Movie Tracker</h1>
+      <h1>CineMax</h1>
       <Link to="/home">
         <button>Go to Home</button>
       </Link>

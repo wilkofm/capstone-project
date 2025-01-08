@@ -1,17 +1,22 @@
 const express = require("express");
 const userRouter = express.Router();
+const Models = require("../models");
 const Controllers = require("../controllers");
 const bcrypt = require("bcrypt");
 // matches GET requests sent to /api/users
 
 // matches GET requests sent to /api/users/login
 userRouter.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+  console.log("Received login request body:", req.body);
+
+  const { userName, password } = req.body;
 
   try {
-    const user = await getMoviesWithDetails.User.findOne({
-      where: { userName: username },
+    const user = await Models.User.findOne({
+      where: { userName: userName },
     });
+
+    console.log("Queried User:", user);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -25,7 +30,7 @@ userRouter.post("/login", async (req, res) => {
 
     res.status(200).json({ message: "Login successful", user });
   } catch (err) {
-    console.error(err);
+    console.error("Error during login:", err);
     res.status(500).json({ message: "Internal server error" });
   }
 });

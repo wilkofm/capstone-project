@@ -1,11 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 require("dotenv").config();
 require("./dbConnect");
+
 let movieRoutes = require("./routes/movieRoutes");
 let reviewRoutes = require("./routes/reviewRoutes");
 let userRoutes = require("./routes/userRoutes");
 let watchlistRoutes = require("./routes/watchlistRoutes");
+
+// Middleware
+app.use(cors({ origin: "http://localhost:5173" }));
 
 // parse requests of content-type - application / json;
 app.use(express.json());

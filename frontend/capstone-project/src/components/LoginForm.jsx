@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ userName: "", password: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -12,6 +12,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form data:", formData);
 
     try {
       const response = await fetch("http://localhost:8080/api/users/login", {
@@ -37,9 +38,9 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit} className="flex flex-col items-center">
       <input
         type="text"
-        name="Username"
+        name="userName"
         placeholder="Username"
-        value={formData.username}
+        value={formData.userName}
         onChange={handleChange}
         className="mb-2 px-4 py-2 border rounded"
       />

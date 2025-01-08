@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LoginForm from "../components/LoginForm";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
@@ -14,8 +15,8 @@ const LandingPage = () => {
   };
 
   return (
-    <div>
-      <h1>CineMax</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
+      <h1 className="text-4xl font-bold mb-6">CineMax</h1>
       <Link to="/home">
         <button>Go to Home</button>
       </Link>
@@ -23,24 +24,12 @@ const LandingPage = () => {
       <Link to="/mylist">
         <button>Go to My List</button>
       </Link>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="Username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Log In</button>
-      </form>
-      <button>Create Account</button>
+      <LoginForm />
+      <Link to="/create-account">
+        <button className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded">
+          Create Account
+        </button>
+      </Link>
     </div>
   );
 };

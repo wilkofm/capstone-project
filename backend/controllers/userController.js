@@ -1,5 +1,6 @@
 "use strict";
 const Models = require("../models");
+const bcrypt = require("bcrypt");
 
 // finds users
 const getUsers = (req, res) => {
@@ -16,15 +17,17 @@ const getUsers = (req, res) => {
 };
 
 // creates users
-const createUser = (data, res) => {
-  Models.User.create(data)
-    .then((data) => {
-      res.send({ result: 200, data: data });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send({ result: 500, error: err.message });
-    });
+const createUser = async (data, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    const userData = { ...data, password: hashedPassword };
+
+    const user = await Models.User.create(userData);
+    res.send({ result: 200, data: user });
+  } catch (err) {
+    console.log(err);
+    res.send({ result: 500, error: err.message });
+  }
 };
 
 // updates users

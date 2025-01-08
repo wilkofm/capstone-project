@@ -73,8 +73,8 @@ const CreateAccountForm = () => {
         <h3 className="mb-2 text-lg font-bold">Select an Avatar</h3>
         <div className="flex space-x-4">
           {[
-            "https://static.wikia.nocookie.net/inconsistently-admirable/images/8/8c/Neytiri_Inconsistently_Admirable.webp/revision/latest?cb=20230803060416",
-            "https://www.the-sun.com/wp-content/uploads/sites/6/2022/06/jb-dino-off.jpg?strip=all&quality=100&w=1620&h=1080&crop=1",
+            "https://i.pinimg.com/564x/6c/ef/b4/6cefb4fdc44d7d9bfb2ab40a33ff1fed.jpg",
+            "https://i.pinimg.com/564x/53/fd/19/53fd19f9155a544f8460ac45ed84645b.jpg",
             "https://i.pinimg.com/564x/08/d0/b4/08d0b43663283f5bef12e7688b035170.jpg",
             "https://i.pinimg.com/originals/f6/aa/24/f6aa2407d3ca6532e0304d6cd0e9291d.jpg",
           ].map((url) => (
@@ -83,9 +83,9 @@ const CreateAccountForm = () => {
               src={url}
               alt="Avatar"
               onClick={() => handleAvatarSelect(url)}
-              className={`w-16 h-16 rounded-full cursor-pointer border-2 ${
+              className={`w-24 h-24 rounded-full cursor-pointer border-2 ${
                 formData.avatar === url
-                  ? "border-blue-500"
+                  ? "border-customBlue"
                   : "border-transparent"
               }`}
             />
@@ -95,7 +95,7 @@ const CreateAccountForm = () => {
 
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded text-white"
+        className="px-4 py-2 bg-customBlue hover:bg-blue-600 rounded text-white"
       >
         Create Account
       </button>

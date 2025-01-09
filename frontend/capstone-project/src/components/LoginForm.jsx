@@ -54,7 +54,7 @@ const LoginForm = () => {
       />
       <button
         type="submit"
-        className="px-4 py-2 bg-customBlue hover:bg-green-600 rounded"
+        className="px-4 py-2 bg-customBlue hover:bg-customHoverBlue rounded"
       >
         Log In
       </button>

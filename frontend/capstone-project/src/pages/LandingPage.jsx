@@ -19,11 +19,6 @@ const LandingPage = () => {
     <div className="border border-customForeground p-6 rounded-lg shadow-md bg-gray-800 max-w-sm mx-auto flex flex-col items-center justify-center">
       <img src={logo} alt="Logo" className="w-72" />
       <LoginForm />
-      <Link to="/create-account">
-        <button className="mt-4 px-4 py-2 bg-customBlue hover:bg-customHoverBlue rounded">
-          Create Account
-        </button>
-      </Link>
     </div>
   );
 };

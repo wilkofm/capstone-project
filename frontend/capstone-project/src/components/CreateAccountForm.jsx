@@ -92,9 +92,7 @@ const CreateAccountForm = () => {
         />
 
         <div className="mb-4">
-          <h3 className="mb-2 text-lg font-bold text-white">
-            Select an Avatar
-          </h3>
+          <h3 className="mb-2 text-lg text-white">Select an Avatar</h3>
           <div className="flex space-x-4">
             {[
               "https://i.pinimg.com/564x/6c/ef/b4/6cefb4fdc44d7d9bfb2ab40a33ff1fed.jpg",

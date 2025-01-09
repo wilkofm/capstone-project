@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ userName: "", password: "" });
@@ -52,12 +53,20 @@ const LoginForm = () => {
         onChange={handleChange}
         className="mb-2 px-4 py-2 border rounded"
       />
-      <button
-        type="submit"
-        className="px-4 py-2 bg-customBlue hover:bg-customHoverBlue rounded"
-      >
-        Log In
-      </button>
+
+      <div className="flex space-x-4">
+        <button
+          type="submit"
+          className="mt-2 px-4 py-2 bg-customBlue hover:bg-customHoverBlue rounded"
+        >
+          Log In
+        </button>
+        <Link to="/create-account">
+          <button className="mt-2 px-4 py-2 bg-customBlue hover:bg-customHoverBlue rounded">
+            Create Account
+          </button>
+        </Link>
+      </div>
       {error && <p className="mt-2 text-red-500">{error}</p>}
     </form>
   );

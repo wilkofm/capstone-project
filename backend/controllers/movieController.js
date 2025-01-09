@@ -16,8 +16,8 @@ const getMovies = (req, res) => {
 };
 
 // creates movie
-const createMovie = (data, res) => {
-  Models.Movie.create(data)
+const createMovie = (req, res) => {
+  Models.Movie.bulkCreate(req.body)
     .then((data) => {
       res.send({ result: 200, data: data });
     })

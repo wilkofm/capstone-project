@@ -1,11 +1,43 @@
 const express = require("express");
 const userRouter = express.Router();
+const Models = require("../models");
 const Controllers = require("../controllers");
+const bcrypt = require("bcrypt");
 // matches GET requests sent to /api/users
+
+// matches GET requests sent to /api/users/login
+userRouter.post("/login", async (req, res) => {
+  console.log("Received login request body:", req.body);
+
+  const { userName, password } = req.body;
+
+  try {
+    const user = await Models.User.findOne({
+      where: { userName: userName },
+    });
+
+    console.log("Queried User:", user);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    //compare hashed passwords
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid password" });
+    }
+
+    res.status(200).json({ message: "Login successful", user });
+  } catch (err) {
+    console.error("Error during login:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 // (the prefix from server.js)
 userRouter.get("/", (req, res) => {
-  Controllers.userController.getUsers(res);
+  Controllers.userController.getUsers(req, res);
 });
 
 // matches POST requests sent to /api/users/create

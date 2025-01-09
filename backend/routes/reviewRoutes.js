@@ -5,7 +5,7 @@ const Controllers = require("../controllers");
 
 // (the prefix from server.js)
 reviewRouter.get("/", (req, res) => {
-  Controllers.reviewController.getReviews(res);
+  Controllers.reviewController.getReviews(req, res);
 });
 
 // matches POST requests sent to /api/users/create

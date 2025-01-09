@@ -5,7 +5,7 @@ const Controllers = require("../controllers");
 
 // (the prefix from server.js)
 watchlistRouter.get("/", (req, res) => {
-  Controllers.watchlistController.getWatchlists(res);
+  Controllers.watchlistController.getWatchlists(req, res);
 });
 
 // matches POST requests sent to /api/users/create

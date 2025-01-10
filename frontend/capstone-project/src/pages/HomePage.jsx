@@ -1,14 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import CardList from "../components/Cardlist";
 
 const HomePage = () => {
+  // Placeholder avatar URL
+  const userAvatar = "https://via.placeholder.com/100.png?text=Avatar";
+
+  const handleSearch = (searchTerm) => {
+    console.log("Searching for:", searchTerm);
+    // Implement search functionality later
+  };
+
+  const handleLogout = () => {
+    console.log("User logged out");
+    // Implement logout functionality
+  };
+
   return (
-    <div>
-      <h1>Home Page</h1>
-      <Link to="/mylist">
-        <button>Go to My List</button>
-      </Link>
-      {/* add components such as Navbar and MovieCardList here */}
+    <div className="min-h-screen">
+      <Navbar
+        userAvatar={userAvatar}
+        onSearch={handleSearch}
+        onLogout={handleLogout}
+      />
+      <CardList />
     </div>
   );
 };

@@ -1,29 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import CardList from "../components/Cardlist";
 
 const HomePage = () => {
-  // Placeholder avatar URL
-  const userAvatar = "https://via.placeholder.com/100.png?text=Avatar";
+  const [user, setUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearch = (searchTerm) => {
-    console.log("Searching for:", searchTerm);
-    // Implement search functionality later
-  };
+  useEffect(() => {
+    // Retrieve user info from localStorage
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    setUser(loggedInUser);
+  }, []);
 
   const handleLogout = () => {
-    console.log("User logged out");
-    // Implement logout functionality
+    localStorage.removeItem("loggedInUser"); //Clears user info on sign out
+    window.location.href = "/";
   };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
       <Navbar
-        userAvatar={userAvatar}
+        userAvatar={user.avatar}
         onSearch={handleSearch}
         onLogout={handleLogout}
       />
-      <CardList />
+      <div className="pt-8">
+        <CardList searchQuery={searchQuery} />
+      </div>
     </div>
   );
 };

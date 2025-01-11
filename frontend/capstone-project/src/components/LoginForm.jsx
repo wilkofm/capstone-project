@@ -25,6 +25,10 @@ const LoginForm = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Login succesful:", data);
+
+        // Save user info in localStorage
+        localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+
         navigate("/home"); //Redirect to HomePage on success
       } else {
         const errorData = await response.json();

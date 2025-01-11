@@ -11,9 +11,9 @@ let watchlistRoutes = require("./routes/watchlistRoutes");
 
 // Middleware
 app.use(cors({ origin: "http://localhost:5173" }));
+app.use(express.json());
 
 // parse requests of content-type - application / json;
-app.use(express.json());
 app.use("/api/movies", movieRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/users", userRoutes);

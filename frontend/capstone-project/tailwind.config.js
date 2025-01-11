@@ -9,6 +9,7 @@ export default {
         customForeground: "#475564",
         customInputGray: "#364453",
         customBackground: "#15181c",
+        customGold: "#cea359",
       },
     },
   },

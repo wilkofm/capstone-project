@@ -100,7 +100,7 @@ const CardList = ({ searchQuery }) => {
   );
 
   return (
-    <div className="grid grid-cols-5 gap-4 p-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4">
       {filteredMovies.map((movie) => (
         <div
           key={movie.movieId}
@@ -114,18 +114,18 @@ const CardList = ({ searchQuery }) => {
           />
 
           {/* Hover content */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-customInputGray bg-opacity-70 text-white p-4 text-left">
-            <h3 className="text-lg font-bold">{movie.movieTitle}</h3>
-            <p>{movie.genre}</p>
-            <p>{movie.year}</p>
-            <p>Rating: {movie.imdbRating}</p>
-            <p>Director: {movie.director}</p>
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-customInputGray bg-opacity-70 text-white sm:p-4 text-left">
+            <h3 className="text-sm sm:text-lg font-bold">{movie.movieTitle}</h3>
+            <p className="text-xs sm:text-sm">{movie.genre}</p>
+            <p className="text-xs sm:text-sm">{movie.year}</p>
+            <p className="text-xs sm:text-sm">Rating: {movie.imdbRating}</p>
+            <p className="text-xs sm:text-sm">Director: {movie.director}</p>
 
-            <div className="absolute bottom-4 left-4">
+            <div className="absolute bottom-2 left-2">
               <Icon
                 icon={likedMovies[movie.movieId] ? heartFilled : heartOutline}
                 onClick={() => toggleLike(movie.movieId)}
-                className="text-customGold text-2xl cursor-pointer hover:scale-110 transition-transform duration-200"
+                className="text-customGold text-xl sm:text-2xl cursor-pointer hover:scale-110 transition-transform duration-200"
               />
             </div>
           </div>

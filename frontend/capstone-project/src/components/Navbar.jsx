@@ -42,7 +42,7 @@ const Navbar = ({ userAvatar, onSearch, onLogout }) => {
         />
       </div>
 
-      <div className="flex items-center space-x-2 sm:space-x-4">
+      <div className="flex items-center space-x-1 sm:space-x-2">
         {/* User Avatar */}
         <img
           src={userAvatar || "https://via.placeholder.com/50"}
@@ -55,7 +55,10 @@ const Navbar = ({ userAvatar, onSearch, onLogout }) => {
           onClick={onLogout}
           className="px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-customForeground hover:bg-customInputGray text-white hover:text-customGold text-sm sm:text-base"
         >
-          Sign Out
+          <Icon
+            icon="mdi:logout"
+            className="text-xl sm:text-2xl hover:scale-110 transition-transform duration-200"
+          />
         </button>
 
         {/* Dark Mode Button */}

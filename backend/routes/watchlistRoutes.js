@@ -3,22 +3,27 @@ const watchlistRouter = express.Router();
 const Controllers = require("../controllers");
 // matches GET requests sent to /api/users
 
-// (the prefix from server.js)
+// GET all watchlists
 watchlistRouter.get("/", (req, res) => {
   Controllers.watchlistController.getWatchlists(req, res);
 });
 
-// matches POST requests sent to /api/users/create
+// Create a new watchlist
 watchlistRouter.post("/create", (req, res) => {
   Controllers.watchlistController.createWatchlist(req.body, res);
 });
 
-// matches PUT requests to /api/users/123 (stores 123 in id param)
+//Add a movie to a user's watchlist
+watchlistRouter.post("/add", (req, res) => {
+  Controllers.watchlistController.addToWatchlist(req, res);
+});
+
+// Update a watchlist entry
 watchlistRouter.put("/:id", (req, res) => {
   Controllers.watchlistController.updateWatchlist(req, res);
 });
 
-// matches DELETE requests to /api/users/123 (123 in id param)
+// DELETE a watchlist entry
 watchlistRouter.delete("/:id", (req, res) => {
   Controllers.watchlistController.deleteWatchlist(req, res);
 });

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -9,6 +10,7 @@ export default {
         customForeground: "#475564",
         customInputGray: "#364453",
         customBackground: "#15181c",
+        customGold: "#cea359",
       },
     },
   },

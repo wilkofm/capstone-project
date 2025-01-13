@@ -1,14 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
+import CardList from "../components/Cardlist";
 
 const HomePage = () => {
+  const [user, setUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    // Retrieve user info from localStorage
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    setUser(loggedInUser);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser"); //Clears user info on sign out
+    window.location.href = "/";
+  };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white">
+        Loading...
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1>Home Page</h1>
-      <Link to="/mylist">
-        <button>Go to My List</button>
-      </Link>
-      {/* add components such as Navbar and MovieCardList here */}
+    <div className="min-h-screen">
+      <Navbar
+        userAvatar={user.avatar}
+        onSearch={handleSearch}
+        onLogout={handleLogout}
+      />
+      <div className="pt-8">
+        <CardList searchQuery={searchQuery} />
+      </div>
     </div>
   );
 };

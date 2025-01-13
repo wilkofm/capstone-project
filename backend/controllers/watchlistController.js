@@ -27,6 +27,31 @@ const createWatchlist = (data, res) => {
     });
 };
 
+// adds movie to users watchlist
+const addToWatchlist = async (req, res) => {
+  const { userId, movieId } = req.body;
+
+  if (!userId || !movieId) {
+    return res
+      .status(400)
+      .json({ message: "userId and movieId are required " });
+  }
+
+  try {
+    const watchlistEntry = await Models.Watchlist.findOrCreate({
+      where: { userId, movieId },
+    });
+
+    res.status(200).json({
+      message: "Movie added to watchlist successfully",
+      watchlist: watchlistEntry,
+    });
+  } catch (error) {
+    console.error("Error adding to watchlist:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 // updates watchlist
 const updateWatchlist = (req, res) => {
   Models.Watchlist.update(req.body, {
@@ -61,4 +86,5 @@ module.exports = {
   createWatchlist,
   updateWatchlist,
   deleteWatchlist,
+  addToWatchlist,
 };

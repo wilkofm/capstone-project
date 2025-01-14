@@ -3,11 +3,12 @@ import { Icon } from "@iconify/react";
 import heartOutline from "@iconify-icons/mdi/heart-outline";
 import heartFilled from "@iconify-icons/mdi/heart";
 import PopUpWindow from "./PopupWindow";
+import popcornIcon from "@iconify-icons/mdi/popcorn";
 
 const CardList = ({ searchQuery }) => {
   const [movies, setMovies] = useState([]);
   const [likedMovies, setLikedMovies] = useState({});
-  const [selectedMovieId, setSelectedMovieId] = useState({});
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   const userId = loggedInUser ? loggedInUser.userId : null;
 
@@ -108,6 +109,10 @@ const CardList = ({ searchQuery }) => {
           <div
             key={movie.movieId}
             className="relative group cursor-pointer overflow-hidden shadow-md rounded-lg"
+            onClick={() => {
+              console.log("Selected movieId:", movie.movieId);
+              setSelectedMovieId(movie.movieId);
+            }}
           >
             {/* Movie Poster */}
             <img
@@ -123,7 +128,10 @@ const CardList = ({ searchQuery }) => {
               </h3>
               <p className="text-xs sm:text-sm">{movie.genre}</p>
               <p className="text-xs sm:text-sm">{movie.year}</p>
-              <p className="text-xs sm:text-sm">Rating: {movie.imdbRating}</p>
+              <p className="text-sm flex items-center space-x-1">
+                <Icon icon={popcornIcon} className="text-lg text-customGold" />
+                <span>{movie.imdbRating}</span>
+              </p>
               <p className="text-xs sm:text-sm">Director: {movie.director}</p>
 
               <div className="absolute bottom-2 left-2">
@@ -142,6 +150,8 @@ const CardList = ({ searchQuery }) => {
         <PopUpWindow
           movieId={selectedMovieId}
           onClose={() => setSelectedMovieId(null)}
+          likedMovies={likedMovies}
+          toggleLike={toggleLike}
         />
       )}
     </div>

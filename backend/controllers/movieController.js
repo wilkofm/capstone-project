@@ -25,6 +25,12 @@ const getMovieById = (req, res) => {
       {
         model: Models.Review,
         attributes: ["userId", "rating", "review"],
+        include: [
+          {
+            model: Models.User,
+            attributes: ["userName"],
+          },
+        ],
       },
     ],
   })

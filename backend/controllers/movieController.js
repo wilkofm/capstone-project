@@ -15,6 +15,38 @@ const getMovies = (req, res) => {
     });
 };
 
+// finds movie by Id
+const getMovieById = (req, res) => {
+  const movieId = req.params.id;
+
+  Models.Movie.findOne({
+    where: { movieId },
+    include: [
+      {
+        model: Models.Review,
+        attributes: ["userId", "rating", "review"],
+        include: [
+          {
+            model: Models.User,
+            attributes: ["userName"],
+          },
+        ],
+      },
+    ],
+  })
+    .then((movie) => {
+      if (movie) {
+        res.send({ result: 200, data: movie });
+      } else {
+        res.status(404).send({ result: 404, message: "Movie not found" });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send({ result: 500, error: err.message });
+    });
+};
+
 // creates movie
 const createMovie = (req, res) => {
   Models.Movie.bulkCreate(req.body)
@@ -60,11 +92,11 @@ const getMoviesWithDetails = (req, res) => {
     include: [
       {
         model: Models.Review, //joins with review
-        attributes: ["rating", "review"],
+        attributes: ["userId", "rating", "review"],
       },
       {
         model: Models.User,
-        attributes: ["userName", "emailId"],
+        attributes: ["userName"],
       },
     ],
   })
@@ -83,4 +115,5 @@ module.exports = {
   updateMovie,
   deleteMovie,
   getMoviesWithDetails,
+  getMovieById,
 };

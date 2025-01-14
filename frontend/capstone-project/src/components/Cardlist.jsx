@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import heartOutline from "@iconify-icons/mdi/heart-outline";
 import heartFilled from "@iconify-icons/mdi/heart";
+import PopUpWindow from "./PopupWindow";
+import popcornIcon from "@iconify-icons/mdi/popcorn";
 
 const CardList = ({ searchQuery }) => {
   const [movies, setMovies] = useState([]);
   const [likedMovies, setLikedMovies] = useState({});
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   const userId = loggedInUser ? loggedInUser.userId : null;
 
@@ -100,37 +103,57 @@ const CardList = ({ searchQuery }) => {
   );
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4">
-      {filteredMovies.map((movie) => (
-        <div
-          key={movie.movieId}
-          className="relative group cursor-pointer overflow-hidden shadow-md rounded-lg"
-        >
-          {/* Movie Poster */}
-          <img
-            src={movie.poster}
-            alt={movie.movieTitle}
-            className="w-full h-full object-cover group-hover:opacity-50 transition-opacity duration-200"
-          />
+    <div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4">
+        {filteredMovies.map((movie) => (
+          <div
+            key={movie.movieId}
+            className="relative group cursor-pointer overflow-hidden shadow-md rounded-lg"
+            onClick={() => {
+              console.log("Selected movieId:", movie.movieId);
+              setSelectedMovieId(movie.movieId);
+            }}
+          >
+            {/* Movie Poster */}
+            <img
+              src={movie.poster}
+              alt={movie.movieTitle}
+              className="w-full h-full object-cover group-hover:opacity-50 transition-opacity duration-200"
+            />
 
-          {/* Hover content */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-customInputGray bg-opacity-70 text-white sm:p-4 text-left">
-            <h3 className="text-sm sm:text-lg font-bold">{movie.movieTitle}</h3>
-            <p className="text-xs sm:text-sm">{movie.genre}</p>
-            <p className="text-xs sm:text-sm">{movie.year}</p>
-            <p className="text-xs sm:text-sm">Rating: {movie.imdbRating}</p>
-            <p className="text-xs sm:text-sm">Director: {movie.director}</p>
+            {/* Hover content */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-customInputGray bg-opacity-70 text-white sm:p-4 text-left">
+              <h3 className="text-sm sm:text-lg font-bold">
+                {movie.movieTitle}
+              </h3>
+              <p className="text-xs sm:text-sm">{movie.genre}</p>
+              <p className="text-xs sm:text-sm">{movie.year}</p>
+              <p className="text-sm flex items-center space-x-1">
+                <Icon icon={popcornIcon} className="text-lg text-customGold" />
+                <span>{movie.imdbRating}</span>
+              </p>
+              <p className="text-xs sm:text-sm">Director: {movie.director}</p>
 
-            <div className="absolute bottom-2 left-2">
-              <Icon
-                icon={likedMovies[movie.movieId] ? heartFilled : heartOutline}
-                onClick={() => toggleLike(movie.movieId)}
-                className="text-customGold text-xl sm:text-2xl cursor-pointer hover:scale-110 transition-transform duration-200"
-              />
+              <div className="absolute bottom-2 left-2">
+                <Icon
+                  icon={likedMovies[movie.movieId] ? heartFilled : heartOutline}
+                  onClick={() => toggleLike(movie.movieId)}
+                  className="text-customGold text-xl sm:text-2xl cursor-pointer hover:scale-110 transition-transform duration-200"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {selectedMovieId && (
+        <PopUpWindow
+          movieId={selectedMovieId}
+          onClose={() => setSelectedMovieId(null)}
+          likedMovies={likedMovies}
+          toggleLike={toggleLike}
+        />
+      )}
     </div>
   );
 };

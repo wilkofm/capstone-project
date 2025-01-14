@@ -2,9 +2,14 @@ const express = require("express");
 const movieRouter = express.Router();
 const Controllers = require("../controllers");
 
-// (the prefix from server.js)
+// GET all movies
 movieRouter.get("/", (req, res) => {
   Controllers.movieController.getMovies(req, res);
+});
+
+// GET individual movie
+movieRouter.get("/:id", (req, res) => {
+  Controllers.movieController.getMovieById(req, res);
 });
 
 // matches POST requests sent to /api/users/create

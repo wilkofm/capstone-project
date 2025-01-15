@@ -5,12 +5,52 @@ import CardList from "../components/Cardlist";
 const WatchlistPage = () => {
   const [user, setUser] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [watchlistMovies, setWatchlistMovies] = useState([]);
+  const [likedMovies, setLikedMovies] = useState({});
 
   useEffect(() => {
     // Retrieve user info from localStorage
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     setUser(loggedInUser);
+
+    if (loggedInUser) {
+      fetchWatchlist(loggedInUser.userId);
+    }
   }, []);
+
+  const fetchWatchlist = async (userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/watchlists?userId=${userId}`
+      );
+      const data = await response.json();
+
+      if (data?.data) {
+        const liked = {};
+        const movies = [];
+
+        for (const entry of data.data) {
+          liked[entry.movieId] = true;
+
+          //Fetch each movie details
+          const movieResponse = await fetch(
+            `http://localhost:8080/api/movies/${entry.movieId}`
+          );
+          const movieData = await movieResponse.json();
+          if (movieData?.data) {
+            movies.push(movieData.data);
+          }
+        }
+
+        setWatchlistMovies(movies);
+        setLikedMovies(liked);
+      } else {
+        console.error("No watchlist data found.");
+      }
+    } catch (error) {
+      console.error("Failed to fetch watchlist:", error);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser"); //Clears user info on sign out
@@ -19,6 +59,45 @@ const WatchlistPage = () => {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
+  };
+
+  const toggleLike = async (movieId) => {
+    const isLiked = likedMovies[movieId];
+
+    try {
+      const url = isLiked
+        ? `http://localhost:8080/api/watchlists/remove`
+        : `http://localhost:8080/api/watchlists/add`;
+
+      const method = isLiked ? "DELETE" : "POST";
+
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({ userId: user.userId, movieId }),
+      });
+
+      if (response.ok) {
+        if (isLiked) {
+          // Remove from the watchlist
+          setWatchlistMovies((prev) =>
+            prev.filter((movie) => movie.movieId !== movieId)
+          );
+        } else {
+          //  fetch the updated watchlist
+          fetchWatchlist(user.userId);
+        }
+
+        setLikedMovies((prev) => ({
+          ...prev,
+          [movieId]: !isLiked,
+        }));
+      } else {
+        console.error("Failed to update watchlist.");
+      }
+    } catch (error) {
+      console.error("Error updating watchlist:", error);
+    }
   };
 
   if (!user) {
@@ -37,7 +116,12 @@ const WatchlistPage = () => {
         onLogout={handleLogout}
       />
       <div className="pt-8">
-        <CardList searchQuery={searchQuery} />
+        <CardList
+          searchQuery={searchQuery}
+          movies={watchlistMovies}
+          likedMovies={likedMovies}
+          toggleLike={toggleLike}
+        />
       </div>
     </div>
   );

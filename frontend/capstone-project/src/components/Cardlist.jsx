@@ -5,101 +5,104 @@ import heartFilled from "@iconify-icons/mdi/heart";
 import PopUpWindow from "./PopupWindow";
 import popcornIcon from "@iconify-icons/mdi/popcorn";
 
-const CardList = ({ searchQuery, movies, likedMovies, toggleLike }) => {
+const CardList = ({
+  searchQuery,
+  movies: moviesProp,
+  likedMovies,
+  toggleLike,
+}) => {
   const [movies, setMovies] = useState([]);
-  const [likedMovies, setLikedMovies] = useState({});
+  const [localLikedMovies, setLocalLikedMovies] = useState({});
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   const userId = loggedInUser ? loggedInUser.userId : null;
 
   // Fetch movies from backend
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/api/movies");
-        const data = await response.json();
-        setMovies(data.data || []);
-      } catch (error) {
-        console.error("Failed to fetch movies:", error);
-      }
-    };
+    if (moviesProp) {
+      setMovies(moviesProp);
+    } else {
+      const fetchMovies = async () => {
+        try {
+          const response = await fetch("http://localhost:8080/api/movies");
+          const data = await response.json();
+          setMovies(data.data || []);
+        } catch (error) {
+          console.error("Failed to fetch movies:", error);
+        }
+      };
 
-    fetchMovies();
-  }, []);
+      fetchMovies();
+    }
+  }, [moviesProp]);
 
   // Fetch user's watchlist
   useEffect(() => {
-    const fetchWatchlist = async () => {
-      if (!userId) return;
+    if (!likedMovies && userId) {
+      const fetchWatchlist = async () => {
+        try {
+          const response = await fetch(
+            `http://localhost:8080/api/watchlists?userId=${userId}`
+          );
+          const data = await response.json();
+
+          if (data.data) {
+            const liked = {};
+            data.data.forEach((entry) => {
+              liked[entry.movieId] = true;
+            });
+            setLocalLikedMovies(liked);
+          }
+        } catch (error) {
+          console.error("Failed to fetch watchlist:", error);
+        }
+      };
+
+      fetchWatchlist();
+    }
+  }, [likedMovies, userId]);
+
+  const moviesToDisplay = movies || [];
+  const likedMoviesState = likedMovies || localLikedMovies;
+
+  const handleToggleLike =
+    toggleLike ||
+    (async (movieId) => {
+      if (!userId) {
+        console.error("userId not found in localStorage");
+        return;
+      }
+
+      const isLiked = likedMoviesState[movieId];
+      const url = isLiked
+        ? `http://localhost:8080/api/watchlists/remove`
+        : `http://localhost:8080/api/watchlists/add`;
+
+      const method = isLiked ? "DELETE" : "POST";
 
       try {
-        const response = await fetch(
-          `http://localhost:8080/api/watchlists?userId=${userId}`
-        );
-        const data = await response.json();
+        const resposne = await fetch(url, {
+          method,
+          headers: { "Content-type": "application/json " },
+          body: JSON.stringify({ userId, movieId }),
+        });
 
-        if (data.data) {
-          const liked = {};
-          data.data.forEach((entry) => {
-            liked[entry.movieId] = true;
-          });
-          setLikedMovies(liked);
+        if (response.ok) {
+          setLocalLikedMovies((prev) => ({
+            ...prev,
+            [movieId]: !isLiked,
+          }));
+        } else {
+          console.error("Failed to update watchlist");
         }
       } catch (error) {
-        console.error("Failed to fetch watchlist:", error);
+        console.error("Error updating watchlist:", error);
       }
-    };
-
-    fetchWatchlist();
-  }, [userId]);
-
-  //Add movie to watchlist in the backend
-  const addToWatchlist = async (movieId) => {
-    if (!userId) {
-      console.error("User not logged in or userId not found in localStorage");
-      return;
-    }
-
-    console.log(`Adding ${movieId} to watchlist for ${userId}`);
-
-    try {
-      const response = await fetch("http://localhost:8080/api/watchlists/add", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ userId, movieId }),
-      });
-
-      if (response.ok) {
-        console.log(`Movie ${movieId} added to watchlist`);
-      } else {
-        console.error("Failed to add movie to watchlist");
-      }
-    } catch (error) {
-      console.error("Error adding movie to watchlist:", error);
-    }
-  };
-
-  // //Toggle like state for movie
-  const toggleLike = async (movieId) => {
-    // if the movie is liked add it to the watchlist
-    if (!likedMovies[movieId]) {
-      await addToWatchlist(movieId);
-
-      setLikedMovies((prev) => ({
-        ...prev,
-        [movieId]: true,
-      }));
-    } else {
-      setLikedMovies((prev) => ({
-        ...prev,
-        [movieId]: false,
-      }));
-    }
-  };
+    });
 
   //Filter movies based on search query
-  const filteredMovies = (movies || []).filter((movie) =>
-    movie?.movieTitle?.toLowerCase().includes(searchQuery?.toLowerCase())
+  const filteredMovies = moviesToDisplay.filter((movie) =>
+    movie.movieTitle?.toLowerCase().includes(searchQuery?.toLowerCase())
   );
 
   return (
@@ -136,8 +139,13 @@ const CardList = ({ searchQuery, movies, likedMovies, toggleLike }) => {
 
               <div className="absolute bottom-2 left-2">
                 <Icon
-                  icon={likedMovies[movie.movieId] ? heartFilled : heartOutline}
-                  onClick={() => toggleLike(movie.movieId)}
+                  icon={
+                    likedMoviesState[movie.movieId] ? heartFilled : heartOutline
+                  }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleToggleLike(movie.movieId);
+                  }}
                   className="text-customGold text-xl sm:text-2xl cursor-pointer hover:scale-110 transition-transform duration-200"
                 />
               </div>

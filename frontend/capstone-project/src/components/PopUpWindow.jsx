@@ -120,7 +120,7 @@ const PopUpWindow = ({ movieId, onClose, likedMovies, toggleLike }) => {
                 onClick={() => window.open(movie.trailer, "_blank")}
               >
                 <Icon icon={playCircleIcon} className="text-xl sm:text-2xl" />
-                <span className="hidden sm:inline">Trailer</span>
+                <span className="text-sm hidden sm:inline">Trailer</span>
               </button>
 
               {/* Toggle Like button */}

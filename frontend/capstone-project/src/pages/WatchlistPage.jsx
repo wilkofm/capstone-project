@@ -27,20 +27,10 @@ const WatchlistPage = () => {
 
       if (data?.data) {
         const liked = {};
-        const movies = [];
-
-        for (const entry of data.data) {
+        const movies = data.data.map((entry) => {
           liked[entry.movieId] = true;
-
-          //Fetch each movie details
-          const movieResponse = await fetch(
-            `http://localhost:8080/api/movies/${entry.movieId}`
-          );
-          const movieData = await movieResponse.json();
-          if (movieData?.data) {
-            movies.push(movieData.data);
-          }
-        }
+          return entry.movie;
+        });
 
         setWatchlistMovies(movies);
         setLikedMovies(liked);

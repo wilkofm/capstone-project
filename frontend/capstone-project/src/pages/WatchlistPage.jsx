@@ -32,6 +32,9 @@ const WatchlistPage = () => {
           return entry.movie;
         });
 
+        console.log("Movies extracted from watchlist:", movies);
+        console.log("Liked movies state:", liked);
+
         setWatchlistMovies(movies);
         setLikedMovies(liked);
       } else {

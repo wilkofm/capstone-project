@@ -2,40 +2,17 @@
 const Models = require("../models");
 
 // finds watchlists
-const getWatchlists = async (req, res) => {
-  const userId = req.query.userId;
-
-  if (!userId) {
-    return res
-      .status(400)
-      .send({ result: 400, message: "User ID is required." });
-  }
-
-  try {
-    const watchlist = await Models.Watchlist.findAll({
-      where: { userId },
-      include: [
-        {
-          model: Models.Movie, //Joins with the movie table
-          attributes: [
-            "movieId",
-            "movieTitle",
-            "poster",
-            "genre",
-            "year",
-            "imdbRating",
-            "director",
-            "description",
-          ],
-        },
-      ],
+const getWatchlists = (req, res) => {
+  Models.Watchlist.findAll({
+    where: req.query,
+  })
+    .then((data) => {
+      res.send({ result: 200, data: data });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send({ result: 500, error: err.message });
     });
-
-    res.send({ result: 200, data: watchlist });
-  } catch (error) {
-    console.error("Error fetching watchlist:", error);
-    res.status(500).send({ result: 500, message: "Internal Server Error" });
-  }
 };
 
 // creates watchlist

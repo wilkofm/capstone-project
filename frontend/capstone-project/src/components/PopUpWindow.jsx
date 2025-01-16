@@ -126,12 +126,14 @@ const PopUpWindow = ({ movieId, onClose, likedMovies, toggleLike }) => {
               {/* Toggle Like button */}
               <div className="mt-4 flex items-center space-x-2">
                 <Icon
-                  icon={likedMovies[movie.movieId] ? heartFilled : heartOutline}
+                  icon={
+                    likedMovies?.[movie.movieId] ? heartFilled : heartOutline
+                  }
                   onClick={() => toggleLike(movie.movieId)}
                   className="text-customGold text-2xl cursor-pointer hover:scale-110 transition-transform duration-200"
                 />
                 <span className="text-sm">
-                  {likedMovies[movie.movieId]
+                  {likedMovies?.[movie.movieId]
                     ? "Added to Watchlist"
                     : "Add to Watchlist"}
                 </span>

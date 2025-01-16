@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
@@ -8,6 +8,79 @@ import CreateAccountForm from "./components/CreateAccountForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [likedMovies, setLikedMovies] = useState({});
+
+  useEffect(() => {
+    // Retrieve user info from localStorage
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    setUser(loggedInUser);
+
+    if (loggedInUser) {
+      fetchLikedMovies(loggedInUser.userId);
+    }
+  }, []);
+
+  const fetchLikedMovies = async (userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/watchlists?userId=${userId}`
+      );
+      const data = await response.json();
+
+      if (data?.data) {
+        const liked = {};
+        data.data.forEach((entry) => {
+          liked[entry.movieId] = true;
+        });
+        setLikedMovies(liked);
+      } else {
+        console.error("No watchlist data found");
+      }
+    } catch (error) {
+      console.error("Failed to fetch liked movies:", error);
+    }
+  };
+
+  const toggleLike = async (movieId) => {
+    const isLiked = likedMovies[movieId];
+
+    try {
+      const url = isLiked
+        ? `http://localhost:8080/api/watchlists/${user.userId}/${movieId}`
+        : `http://localhost:8080/api/watchlists/add`;
+
+      const method = isLiked ? "DELETE" : "POST";
+
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: !isLiked
+          ? JSON.stringify({ userId: user.userId, movieId })
+          : null,
+      });
+
+      if (response.ok) {
+        setLikedMovies((prev) => ({
+          ...prev,
+          [movieId]: !isLiked,
+        }));
+      } else {
+        console.error("Failed to update like status");
+      }
+    } catch (error) {
+      console.error("Error updating like status:", error);
+    }
+  };
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white">
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <Router>
       <Routes>
@@ -16,7 +89,11 @@ function App() {
           path="/home"
           element={
             <ProtectedRoute>
-              <HomePage />
+              <HomePage
+                user={user}
+                likedMovies={likedMovies}
+                toggleLike={toggleLike}
+              />
             </ProtectedRoute>
           }
         />
@@ -24,7 +101,11 @@ function App() {
           path="/mylist"
           element={
             <ProtectedRoute>
-              <WatchlistPage />
+              <WatchlistPage
+                user={user}
+                likedMovies={likedMovies}
+                toggleLike={toggleLike}
+              />
             </ProtectedRoute>
           }
         />

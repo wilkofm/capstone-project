@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import CardList from "../components/Cardlist";
 
-const HomePage = () => {
-  const [user, setUser] = useState(null);
+const HomePage = ({ user, likedMovies, toggleLike }) => {
   const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    // Retrieve user info from localStorage
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    setUser(loggedInUser);
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("loggedInUser"); //Clears user info on sign out
@@ -21,14 +14,6 @@ const HomePage = () => {
     setSearchQuery(query);
   };
 
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-white">
-        Loading...
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen">
       <Navbar
@@ -37,7 +22,11 @@ const HomePage = () => {
         onLogout={handleLogout}
       />
       <div className="pt-8">
-        <CardList searchQuery={searchQuery} />
+        <CardList
+          searchQuery={searchQuery}
+          likedMovies={likedMovies}
+          toggleLike={toggleLike}
+        />
       </div>
     </div>
   );

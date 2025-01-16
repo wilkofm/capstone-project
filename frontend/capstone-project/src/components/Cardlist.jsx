@@ -36,34 +36,16 @@ const CardList = ({
     }
   }, [moviesProp]);
 
-  // Fetch user's watchlist
   useEffect(() => {
-    if (!likedMovies && userId) {
-      const fetchWatchlist = async () => {
-        try {
-          const response = await fetch(
-            `http://localhost:8080/api/watchlists?userId=${userId}`
-          );
-          const data = await response.json();
-
-          if (data.data) {
-            const liked = {};
-            data.data.forEach((entry) => {
-              liked[entry.movieId] = true;
-            });
-            setLocalLikedMovies(liked);
-          }
-        } catch (error) {
-          console.error("Failed to fetch watchlist:", error);
-        }
-      };
-
-      fetchWatchlist();
+    if (likedMovies) {
+      console.log("Syncing likedMovies to local state:", likedMovies);
+      setLocalLikedMovies(likedMovies);
     }
-  }, [likedMovies, userId]);
+  }, [likedMovies]);
 
-  const moviesToDisplay = movies || [];
-  const likedMoviesState = likedMovies || localLikedMovies;
+  const likedMoviesState = likedMovies || localLikedMovies || {};
+  console.log("Movies in Cardlist:", movies);
+  console.log("Liked Movies State:", likedMoviesState);
 
   const handleToggleLike =
     toggleLike ||
@@ -81,7 +63,7 @@ const CardList = ({
       const method = isLiked ? "DELETE" : "POST";
 
       try {
-        const resposne = await fetch(url, {
+        const response = await fetch(url, {
           method,
           headers: { "Content-type": "application/json " },
           body: JSON.stringify({ userId, movieId }),
@@ -101,9 +83,17 @@ const CardList = ({
     });
 
   //Filter movies based on search query
-  const filteredMovies = moviesToDisplay.filter((movie) =>
+  const filteredMovies = movies.filter((movie) =>
     movie.movieTitle?.toLowerCase().includes(searchQuery?.toLowerCase())
   );
+
+  filteredMovies.forEach((movie) => {
+    console.log(
+      `Movie ID: ${movie.movieId}, Liked: ${
+        likedMoviesState[movie.movieId] ? "Yes" : "No"
+      }`
+    );
+  });
 
   return (
     <div>

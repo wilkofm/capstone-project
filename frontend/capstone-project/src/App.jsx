@@ -1,6 +1,11 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import WatchlistPage from "./pages/WatchlistPage";
@@ -73,26 +78,19 @@ function App() {
     }
   };
 
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-white">
-        Loading...
-      </div>
-    );
-  }
-
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage setUser={setUser} />} />
         <Route
           path="/home"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute user={user}>
               <HomePage
                 user={user}
                 likedMovies={likedMovies}
                 toggleLike={toggleLike}
+                setUser={setUser}
               />
             </ProtectedRoute>
           }
@@ -100,11 +98,12 @@ function App() {
         <Route
           path="/mylist"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute user={user}>
               <WatchlistPage
                 user={user}
                 likedMovies={likedMovies}
                 toggleLike={toggleLike}
+                setUser={setUser}
               />
             </ProtectedRoute>
           }

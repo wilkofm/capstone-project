@@ -5,7 +5,6 @@ function ProtectedRoute({ redirectPath = "/", children }) {
   const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   if (!currentUser) {
-    alert("You must be signed in to visit this page");
     return <Navigate to={redirectPath} replace />;
   }
   // works for both nested and standalone routes

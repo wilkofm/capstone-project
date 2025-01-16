@@ -87,14 +87,6 @@ const CardList = ({
     movie.movieTitle?.toLowerCase().includes(searchQuery?.toLowerCase())
   );
 
-  filteredMovies.forEach((movie) => {
-    console.log(
-      `Movie ID: ${movie.movieId}, Liked: ${
-        likedMoviesState[movie.movieId] ? "Yes" : "No"
-      }`
-    );
-  });
-
   return (
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4">

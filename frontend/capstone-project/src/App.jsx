@@ -26,6 +26,12 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      fetchLikedMovies(user.userId);
+    }
+  }, [user]);
+
   const fetchLikedMovies = async (userId) => {
     try {
       const response = await fetch(
@@ -38,6 +44,7 @@ function App() {
         data.data.forEach((entry) => {
           liked[entry.movieId] = true;
         });
+        console.log("Fetched liked movies:", liked);
         setLikedMovies(liked);
       } else {
         console.error("No watchlist data found");
@@ -70,6 +77,11 @@ function App() {
           ...prev,
           [movieId]: !isLiked,
         }));
+        console.log(
+          `Movie ID ${movieId} ${
+            isLiked ? "removed from" : "added to"
+          } watchlist`
+        );
       } else {
         console.error("Failed to update like status");
       }

@@ -18,7 +18,10 @@ function App() {
 
   useEffect(() => {
     // Retrieve user info from localStorage
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    const storedUser = localStorage.getItem("loggedInUser");
+    const loggedInUser =
+      storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null;
+
     setUser(loggedInUser);
 
     if (loggedInUser) {
@@ -27,6 +30,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log("User state in App:", user);
     if (user) {
       fetchLikedMovies(user.userId);
     }
@@ -120,7 +124,10 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/create-account" element={<CreateAccountForm />} />
+        <Route
+          path="/create-account"
+          element={<CreateAccountForm setUser={setUser} />}
+        />
       </Routes>
     </Router>
   );

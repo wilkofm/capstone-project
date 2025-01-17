@@ -4,15 +4,32 @@ import { Icon } from "@iconify/react";
 import logo from "../images/cinemax-universal-blue-logo.png";
 
 const Navbar = ({ userAvatar, onSearch, setUser }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("theme") !== "light"
+  );
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
 
   const toggleDarkMode = () => {
-    setDarkMode((prev) => !prev);
-    document.documentElement.classList.toggle("dark", !darkMode);
+    const isDark = !darkMode;
+    setDarkMode(isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+
+    if (isDark) {
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.add("light");
+    }
   };
+
+  React.useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      document.documentElement.classList.add("light");
+      setDarkMode(false);
+    }
+  }, []);
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);

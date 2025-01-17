@@ -113,13 +113,9 @@ const CardList = ({
               </h3>
               <p className="text-xs sm:text-sm">{movie.genre}</p>
               <p className="text-xs sm:text-sm">{movie.year}</p>
-              <p className="text-sm flex items-center space-x-1">
-                <Icon icon={popcornIcon} className="text-lg text-customGold" />
-                <span>{movie.imdbRating}</span>
-              </p>
               <p className="text-xs sm:text-sm">Director: {movie.director}</p>
 
-              <div className="absolute bottom-2 left-2">
+              <div className="absolute bottom-2 left-2 flex items-center space-x-2">
                 <Icon
                   icon={
                     likedMoviesState[movie.movieId] ? heartFilled : heartOutline
@@ -130,6 +126,15 @@ const CardList = ({
                   }}
                   className="text-customGold text-xl sm:text-2xl cursor-pointer hover:scale-110 transition-transform duration-200"
                 />
+              </div>
+              <div className="absolute bottom-2 right-2 flex items-center space-x-1">
+                <p className="text-sm flex items-center space-x-1">
+                  <Icon
+                    icon={popcornIcon}
+                    className="text-lg text-customGold"
+                  />
+                  <span>{movie.imdbRating}</span>
+                </p>
               </div>
             </div>
           </div>

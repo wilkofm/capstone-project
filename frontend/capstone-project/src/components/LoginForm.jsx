@@ -1,6 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Button } from "./ui/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/Card";
+import { Input } from "./ui/Input";
+import { Label } from "./ui/Label";
+import logo from "../images/cinemax-universal-blue-logo.png";
 
 const LoginForm = ({ setUser }) => {
   const [formData, setFormData] = useState({ userName: "", password: "" });
@@ -42,39 +52,66 @@ const LoginForm = ({ setUser }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col items-center">
-      <input
-        type="text"
-        name="userName"
-        placeholder="Username"
-        value={formData.userName}
-        onChange={handleChange}
-        className="mb-2 px-4 py-2 border rounded"
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-        className="mb-2 px-4 py-2 border rounded"
-      />
-
-      <div className="flex space-x-4">
-        <button
-          type="submit"
-          className="mt-2 px-4 py-2 bg-customBlue hover:bg-customHoverBlue rounded"
-        >
-          Log In
-        </button>
-        <Link to="/create-account">
-          <button className="mt-2 px-4 py-2 bg-customBlue hover:bg-customHoverBlue rounded">
-            Create Account
-          </button>
-        </Link>
-      </div>
-      {error && <p className="mt-2 text-red-500">{error}</p>}
-    </form>
+    <div className="flex flex-col gap-6">
+      <Card className="w-full max-w-sm h-[440px] flex flex-col justify-between border border-gray-500 rounded-lg">
+        <CardHeader className="flex flex-col items-center gap-2">
+          <img src={logo} alt="CineMax Logo" className="w-72 h-auto" />
+          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardDescription className="text-sm text-gray-200">
+            Enter your details below to log in
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="overflow-y-auto">
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="userName" className="text-left">
+                  Username
+                </Label>
+                <Input
+                  id="userName"
+                  name="userName"
+                  type="text"
+                  placeholder="Your username"
+                  value={formData.userName}
+                  onChange={handleChange}
+                  required
+                  className="text-sm border border-gray-500 rounded-md"
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password" className="text-left">
+                  Password
+                </Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  className="text-sm border border-gray-500 rounded-md"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full text-sm hover:text-customGold"
+              >
+                Log In
+              </Button>
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+            </div>
+            <div className="mt-4 text-center text-sm">
+              Dont&apos;t have an account?{" "}
+              <Link to="/create-account" className="underline">
+                Sign up
+              </Link>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

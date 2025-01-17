@@ -6,7 +6,7 @@ CineMax
 
 What Do I Want To Make?
 
-CineMax is a web app where users can track their movie watching habits. Users can create an account or log in, search for movies and filter movies based on genre, year, ratings etc. They can also rate and review movies, as well as add movies to their personal watch list.
+CineMax is a web app where users can track their movie watching habits. Users can create an account or log in, search for movies and add them to their personal watchlist. They can also rate and review movies, as well as read other users reviews.
 
 # Github
 
@@ -18,12 +18,9 @@ Main Branch
 
 Back end
 
-MySQL Database branch
-
-- This is the branch where I will set up and implement the code that will run the database
-
 Models branch
 
+- This is the branch where I will set up and implement the code that will run the database
 - This is the branch where I will create the models in my database
 
 Routes branch
@@ -39,37 +36,24 @@ Front End
 Landing-Page Branch
 
 - Where I set up the user landing page and the ability for the user to create an account or log in
+- Users can also select an avatar image here when creating an account to suit their movie personality
 
-- Users can also select an avatar image here to suit their movie personality
+Login-Form-Styling Branch
 
-Card-List Branch
+- This is where I style the Login Form and the Create Account form
 
-- Where I set up the homepage and the inital card list that pulls the list of movies from my backend API
+Home-Page Branch
 
-Card List Styling Branch
+- Where I set up the homepage and the inital card list that pulls the list of movies from my backend API, as well as the Navbar where the user can navigate between the Home Page and their My List page, as well as search movies and logout of their account.
+- This is also where I set up Tailwind CSS and begin my initial styling on the page, making sure the card list is formatted correctly
 
-- Branch where I set up Tailwind CSS and begin my initial styling on the page, making sure the card list is formatted correctly
-
-Feature/Filter Branch
-
-- Branch where I create the ability to search and filter each film based on the movie genre, year or rating.
-- This is also where I create the ability to have each movie link to a specific film trailer
-
-Rate/Review Branch
+Pop-Up-Window Branch
 
 - This is where I set up the clickable movie page/popup where the user can rate, review and add the movie to their watchlist
 
-Rate/Review Styling Branch
+Watch-list Branch
 
-- This is where I begin my initial styling on the movie page to ensure everything is formatted correctly
-
-Watch list Branch
-
-- This is the branch where I set up the user watch list page that displays their saved movies
-
-Watch list Styling Branch
-
-- This is where I begin my initial styling on the watch list page to ensure everything is formatted correctly
+- This is the branch where I set up the user watch list page that displays their liked movies and the ability to interact and remove liked movies from their list
 
 Dark Mode Feature Branch
 
@@ -81,15 +65,14 @@ Additional Styling Branch
 
 # Styling Goals
 
-I want the site to have a minimal, clean feel, some references are MUBI and Letterboxd.
+I want the site to have a minimal, clean feel, some references are MUBI, IMDb and Letterboxd.
 
 Here are a few styling features I’d like to implement:
 
 - Tailwind CSS to style the page
 - Clean layout
-- A Logo
+- A CineMax logo implemented across pages
 - Icons
-- Dedicated Font
 - A nav-bar to house the filter options
 - Resizing card/images so everything is uniform
 

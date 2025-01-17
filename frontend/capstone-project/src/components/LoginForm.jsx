@@ -53,11 +53,11 @@ const LoginForm = ({ setUser }) => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card className="w-full max-w-sm h-[440px] flex flex-col justify-between">
+      <Card className="w-full max-w-sm h-[440px] flex flex-col justify-between border border-gray-500 rounded-lg">
         <CardHeader className="flex flex-col items-center gap-2">
           <img src={logo} alt="CineMax Logo" className="w-72 h-auto" />
           <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription className="text-sm text-gray-400">
+          <CardDescription className="text-sm text-gray-200">
             Enter your details below to log in
           </CardDescription>
         </CardHeader>
@@ -76,7 +76,7 @@ const LoginForm = ({ setUser }) => {
                   value={formData.userName}
                   onChange={handleChange}
                   required
-                  className="text-sm"
+                  className="text-sm border border-gray-500 rounded-md"
                 />
               </div>
               <div className="grid gap-2">
@@ -91,10 +91,13 @@ const LoginForm = ({ setUser }) => {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="text-sm"
+                  className="text-sm border border-gray-500 rounded-md"
                 />
               </div>
-              <Button type="submit" className="w-full text-sm">
+              <Button
+                type="submit"
+                className="w-full text-sm hover:text-customGold"
+              >
                 Log In
               </Button>
               {error && <p className="text-red-500 text-sm">{error}</p>}

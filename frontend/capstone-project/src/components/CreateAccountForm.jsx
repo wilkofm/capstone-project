@@ -88,11 +88,11 @@ const CreateAccountForm = ({ setUser }) => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Card className="w-full max-w-sm h-[440px] flex flex-col justify-between">
+      <Card className="w-full max-w-sm h-[440px] flex flex-col justify-between border border-gray-500 rounded-lg">
         <CardHeader className="flex flex-col items-center gap-2">
           <img src={logo} alt="CineMax Logo" className="w-72 h-auto" />
           <CardTitle className="text-2xl">Create Account</CardTitle>
-          <CardDescription className="text-sm text-gray-400">
+          <CardDescription className="text-sm text-gray-200">
             Fill in the fields below to sign up
           </CardDescription>
         </CardHeader>
@@ -111,7 +111,7 @@ const CreateAccountForm = ({ setUser }) => {
                   value={formData.userName}
                   onChange={handleChange}
                   required
-                  className="text-sm"
+                  className="text-sm border border-gray-500 rounded-md"
                 />
               </div>
               <div className="grid gap-2">
@@ -126,7 +126,7 @@ const CreateAccountForm = ({ setUser }) => {
                   value={formData.emailId}
                   onChange={handleChange}
                   required
-                  className="text-sm"
+                  className="text-sm border border-gray-500 rounded-md"
                 />
               </div>
               <div className="grid gap-2">
@@ -141,7 +141,7 @@ const CreateAccountForm = ({ setUser }) => {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="text-sm"
+                  className="text-sm border border-gray-500 rounded-md"
                 />
               </div>
               <div className="grid gap-2">
@@ -167,7 +167,10 @@ const CreateAccountForm = ({ setUser }) => {
                   ))}
                 </div>
               </div>
-              <Button type="submit" className="w-full text-sm">
+              <Button
+                type="submit"
+                className="w-full text-sm hover:text-customGold"
+              >
                 Create Account
               </Button>
               {error && <p className="text-red-500 text-sm">{error}</p>}

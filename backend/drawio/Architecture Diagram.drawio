@@ -1,9 +1,48 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.3">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.6">
   <diagram name="Page-1" id="t1CHkdML4mRntzxfq5Mn">
-    <mxGraphModel>
+    <mxGraphModel dx="1024" dy="578" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="btwM_SbTer7_2zsE2i3v-1" value="User" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="170" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-2" value="Frontend&lt;div&gt;localhost:5173&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="280" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-3" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="btwM_SbTer7_2zsE2i3v-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="330" as="sourcePoint" />
+            <mxPoint x="400" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-4" value="Backend&lt;div&gt;localhost:8080&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-6" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="btwM_SbTer7_2zsE2i3v-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="330" as="sourcePoint" />
+            <mxPoint x="640" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-7" value="Database&lt;div&gt;TablePlus&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="280" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-8" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="btwM_SbTer7_2zsE2i3v-2" target="btwM_SbTer7_2zsE2i3v-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="330" as="sourcePoint" />
+            <mxPoint x="450" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-9" value="Requests Data" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="290" y="300" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-10" value="Receives Data" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="290" y="350" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="btwM_SbTer7_2zsE2i3v-11" value="Requests/Receives Web Site" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="30" y="238" width="180" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

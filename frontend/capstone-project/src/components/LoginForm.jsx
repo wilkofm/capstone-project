@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ setUser }) => {
   const [formData, setFormData] = useState({ userName: "", password: "" });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -28,13 +28,15 @@ const LoginForm = () => {
 
         // Save user info in localStorage
         localStorage.setItem("loggedInUser", JSON.stringify(data.user));
-
+        setUser(data.user);
         navigate("/home"); //Redirect to HomePage on success
       } else {
         const errorData = await response.json();
+        console.error("Login failed:", errorData);
         setError(errorData.message || "Incorrect login details");
       }
     } catch (err) {
+      console.error("Network or other error:", err);
       setError("An error occurred. Please try again.");
     }
   };

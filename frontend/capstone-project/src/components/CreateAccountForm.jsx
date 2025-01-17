@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CreateAccountForm = () => {
+const CreateAccountForm = ({ setUser }) => {
   const [formData, setFormData] = useState({
     userName: "",
     emailId: "",
@@ -23,7 +23,6 @@ const CreateAccountForm = () => {
     e.preventDefault();
 
     //validate form fields
-
     if (!formData.userName.trim()) {
       setError("Username is required");
       return;
@@ -52,8 +51,21 @@ const CreateAccountForm = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Account created succesfully:", data);
-        navigate("/home"); //directs to HomePage
+        console.log("Full API Response:", data);
+
+        const user = data.data;
+        if (user) {
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
+          console.log(
+            "User stored in localStorage:",
+            localStorage.getItem("LoggedInUser")
+          );
+          setUser(user);
+          navigate("/home"); //directs to HomePage
+        } else {
+          console.error("User data missing from API response");
+          setError("Failed to create account. Please try again.");
+        }
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Failed to create account");

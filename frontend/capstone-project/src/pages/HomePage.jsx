@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import CardList from "../components/Cardlist";
 
-const HomePage = () => {
-  const [user, setUser] = useState(null);
+const HomePage = ({ user, likedMovies, toggleLike, setUser }) => {
   const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    // Retrieve user info from localStorage
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    setUser(loggedInUser);
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("loggedInUser"); //Clears user info on sign out
-    window.location.href = "/";
-  };
 
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
 
-  if (!user) {
+  if (!user || !user.avatar) {
+    //This ensures the user is available before rendering the page
     return (
       <div className="min-h-screen flex items-center justify-center text-white">
         Loading...
@@ -32,12 +21,16 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       <Navbar
-        userAvatar={user.avatar}
+        userAvatar={user?.avatar}
         onSearch={handleSearch}
-        onLogout={handleLogout}
+        setUser={setUser}
       />
       <div className="pt-8">
-        <CardList searchQuery={searchQuery} />
+        <CardList
+          searchQuery={searchQuery}
+          likedMovies={likedMovies}
+          toggleLike={toggleLike}
+        />
       </div>
     </div>
   );

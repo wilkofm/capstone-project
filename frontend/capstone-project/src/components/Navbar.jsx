@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import logo from "../images/cinemax-universal-blue-logo.png";
 
-const Navbar = ({ userAvatar, onSearch, onLogout }) => {
+const Navbar = ({ userAvatar, onSearch, setUser }) => {
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
@@ -52,7 +52,11 @@ const Navbar = ({ userAvatar, onSearch, onLogout }) => {
 
         {/* Logout Button */}
         <button
-          onClick={onLogout}
+          onClick={() => {
+            localStorage.removeItem("loggedInUser");
+            setUser(null);
+            window.location.href = "/";
+          }}
           className="px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-customForeground hover:bg-customInputGray text-white hover:text-customGold text-sm sm:text-base"
         >
           <Icon

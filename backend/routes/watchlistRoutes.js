@@ -24,7 +24,7 @@ watchlistRouter.put("/:id", (req, res) => {
 });
 
 // DELETE a watchlist entry
-watchlistRouter.delete("/:id", (req, res) => {
+watchlistRouter.delete("/:userId/:movieId", (req, res) => {
   Controllers.watchlistController.deleteWatchlist(req, res);
 });
 

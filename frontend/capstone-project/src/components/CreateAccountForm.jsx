@@ -92,7 +92,7 @@ const CreateAccountForm = ({ setUser }) => {
         <CardHeader className="flex flex-col items-center gap-2">
           <img src={logo} alt="CineMax Logo" className="w-72 h-auto" />
           <CardTitle className="text-2xl">Create Account</CardTitle>
-          <CardDescription className="text-sm text-gray-200">
+          <CardDescription className="text-sm text-gray-100">
             Fill in the fields below to sign up
           </CardDescription>
         </CardHeader>

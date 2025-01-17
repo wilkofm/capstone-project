@@ -1,14 +1,38 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import logo from "../images/cinemax-universal-blue-logo.png";
 
 const Navbar = ({ userAvatar, onSearch, setUser }) => {
   const [darkMode, setDarkMode] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
 
   const toggleDarkMode = () => {
     setDarkMode((prev) => !prev);
     document.documentElement.classList.toggle("dark", !darkMode);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    setUser(null);
+    window.location.href = "/";
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    onSearch(value);
+  };
+
+  const clearSearch = () => {
+    setSearchQuery("");
+    onSearch("");
   };
 
   return (
@@ -21,60 +45,76 @@ const Navbar = ({ userAvatar, onSearch, setUser }) => {
         <div className="flex space-x-4 min-w-max">
           <Link
             to="/home"
-            className="text-white text-sm sm:text-base hover:text-customGold"
+            className={`text-sm sm:text-base ${
+              location.pathname === "/home" ? "text-customGold" : "text-white"
+            } hover:text-customGold`}
           >
             Home
           </Link>
           <Link
             to="/mylist"
-            className="text-white text-sm sm:text-base hover:text-customGold"
+            className={`text-sm sm:text-base ${
+              location.pathname === "/mylist" ? "text-customGold" : "text-white"
+            } hover:text-customGold`}
           >
             My List
           </Link>
         </div>
 
         {/* Search Bar */}
-        <input
-          type="text"
-          placeholder="Search movies..."
-          onChange={(e) => onSearch(e.target.value)}
-          className="px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-customInputGray text-white text-sm sm:text-base flex-grow max-w-[200px] md:max-w-[300px] lg:max-w-[400px] min-w-[100px]"
-        />
+        <div className="relative flex-grow max-w-[200px] md:max-w-[300px] lg:max-w-[400px]">
+          <input
+            type="text"
+            placeholder="Search movies..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="w-full px-4 py-2 rounded-full bg-customInputGray text-white text-sm sm:text-base pr-10"
+          />
+          {searchQuery && (
+            <Icon
+              icon="mdi:close"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white text-lg cursor-pointer hover:text-customGold"
+              onClick={clearSearch}
+            />
+          )}
+        </div>
       </div>
 
-      <div className="flex items-center space-x-1 sm:space-x-2">
+      <div className="relative flex items-center space-x-1 sm:space-x-2">
         {/* User Avatar */}
-        <img
-          src={userAvatar || "https://via.placeholder.com/50"}
-          alt="User Avatar"
-          className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-500 shrink-0"
-        />
-
-        {/* Logout Button */}
-        <button
-          onClick={() => {
-            localStorage.removeItem("loggedInUser");
-            setUser(null);
-            window.location.href = "/";
-          }}
-          className="px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-customForeground hover:bg-customInputGray text-white hover:text-customGold text-sm sm:text-base"
-        >
-          <Icon
-            icon="mdi:logout"
-            className="text-xl sm:text-2xl hover:scale-110 transition-transform duration-200"
+        <div className="relative">
+          <img
+            src={userAvatar || "https://via.placeholder.com/50"}
+            alt="User Avatar"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-500 cursor-pointer"
+            onClick={toggleDropdown}
           />
-        </button>
-
-        {/* Dark Mode Button */}
-        <button
-          onClick={toggleDarkMode}
-          className="px-2 py-1 sm:px-4 sm:py-2 text-white hover:text-customGold rounded-full text-sm sm:text-base"
-        >
-          <Icon
-            icon={darkMode ? "mdi:weather-night" : "mdi:white-balance-sunny"}
-            className="text-xl sm:text-2xl hover:scale-110 transition-transform duration-200"
-          />
-        </button>
+          {dropdownOpen && (
+            <div className="absolute right-0 top-12 w-48 bg-customForeground shadow-lg rounded-lg">
+              <ul className="py-2 text-sm text-white">
+                <li
+                  className="flex items-center px-4 py-2 hover:bg-customInputGray hover:text-customGold cursor-pointer"
+                  onClick={toggleDarkMode}
+                >
+                  <Icon
+                    icon={
+                      darkMode ? "mdi:weather-night" : "mdi:white-balance-sunny"
+                    }
+                    className="text-xl mr-2"
+                  />
+                  {darkMode ? "Dark Mode" : "Light Mode"}
+                </li>
+                <li
+                  className="flex items-center px-4 py-2 hover:bg-customInputGray hover:text-customGold cursor-pointer"
+                  onClick={handleLogout}
+                >
+                  <Icon icon="mdi:logout" className="text-xl mr-2" />
+                  Logout
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

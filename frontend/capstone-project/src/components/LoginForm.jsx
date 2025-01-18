@@ -57,7 +57,7 @@ const LoginForm = ({ setUser }) => {
         <CardHeader className="flex flex-col items-center gap-2">
           <img src={logo} alt="CineMax Logo" className="w-72 h-auto" />
           <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription className="text-sm text-gray-100">
+          <CardDescription className="text-sm text-gray-300">
             Enter your details below to log in
           </CardDescription>
         </CardHeader>

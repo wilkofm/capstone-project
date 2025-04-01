@@ -13,13 +13,13 @@ Here are some screenshots of the project:
 _Home Page_
 ![Home Page](project-images/home-page.png)
 
-_Pop Up Window_
+_Pop Up Window - Where users can rate, review and read descriptions on the selected film, along with browse other user reviews_
 ![Pop Up Window](project-images/pop-up-window.png)
 
-_My List Page_
+_My List Page - Where users can browse the films added to their watchlist_
 ![My List Page](project-images/my-list-page.png)
 
-_Landing Page_
+_Landing Page - Where users can login or sign up_
 ![Landing Page](project-images/landing-page.png)
 
 # Github

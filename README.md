@@ -13,13 +13,13 @@ Here are some screenshots of the project:
 _Home Page_
 ![Home Page](project-images/home-page.png)
 
-Pop Up Window
+_Pop Up Window_
 ![Pop Up Window](project-images/pop-up-window.png)
 
-My List Page
+_My List Page_
 ![My List Page](project-images/my-list-page.png)
 
-Landing Page
+_Landing Page_
 ![Landing Page](project-images/landing-page.png)
 
 # Github

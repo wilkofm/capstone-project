@@ -10,7 +10,7 @@ CineMax is a web app where users can track their movie watching habits. Users ca
 
 Here are some screenshots of the project:
 
-Home Page
+_Home Page_
 ![Home Page](project-images/home-page.png)
 
 Pop Up Window

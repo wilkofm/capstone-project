@@ -4,8 +4,6 @@ CineMax
 
 # Project Outline
 
-What Do I Want To Make?
-
 CineMax is a web app where users can track their movie watching habits. Users can create an account or log in, search for movies and add them to their personal watchlist. They can also rate and review movies, as well as read other users reviews.
 
 Here are some screenshots of the project:
@@ -79,9 +77,9 @@ Additional Styling Branch
 
 # Styling Goals
 
-I want the site to have a minimal, clean feel, some references are MUBI, IMDb and Letterboxd.
+I intended the site to have a minimal, clean feel, some references are MUBI, IMDb and Letterboxd.
 
-Here are a few styling features I’d like to implement:
+Here are a few styling features I’d aimed to implement:
 
 - Tailwind CSS to style the page
 - Clean layout

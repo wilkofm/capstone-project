@@ -8,6 +8,10 @@ What Do I Want To Make?
 
 CineMax is a web app where users can track their movie watching habits. Users can create an account or log in, search for movies and add them to their personal watchlist. They can also rate and review movies, as well as read other users reviews.
 
+Here are some screenshots of the project:
+
+![Home Page](capstone-project/project-images/home-page.png)
+
 # Github
 
 How many branches and what for?

@@ -58,7 +58,7 @@ npm run dev
 npm install
 npm run dev
 
-- Install relevant libraries used to run this project (listed in Tech Stack below)
+- Install relevant libraries/packages used to run this project (listed in Tech Stack below)
 - Update the .env with your database details
 - Post a selection of films to your database
 

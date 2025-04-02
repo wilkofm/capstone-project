@@ -83,4 +83,4 @@ This project was developed over a 4-week sprint as part of my software engineeri
 # Contact
 
 Created by Max Wilkinson
-[Github] (https://github.com/wilkofm) | [LinkedIn] (https://www.linkedin.com/in/max-wilkinson-b35aa29b/)
+[Github](https://github.com/wilkofm) | [LinkedIn](https://www.linkedin.com/in/max-wilkinson-b35aa29b/)

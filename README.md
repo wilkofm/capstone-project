@@ -1,29 +1,31 @@
 # CineMax
 
-🎬 **CineMax** - Movies To The Max
+🎬 **CineMax - Movies To The Max**
 
 Your ultimate hub for tracking, rating, and discovering movies!
 
 # Project Outline
 
-What is CineMax?
+**What is CineMax?**
 
 CineMax is a user friendly web app where movie enthusiasts can track their movie watching habits, rate and review films, manage personal watch lists, customise their profile and engage with a moving loving community by exploring and interacting with other users' reviews.
 
-Why CineMax?
+**Why CineMax?**
 
 CineMax enhances the movie-tracking process for users and simplifies the decision-making experience of movie selection. It fills a gap for movie lovers who desire organisation and community interaction.
 
 # Features
 
-- Account creation and secure login (with bcrypt password hashing)
-- Avatar selector on signup for personalized profiles
-- Searchable movie library
-- Add and remove movies from your personal watchlist
-- Leave reviews and ratings
-- Pop-up movie detail modals with IMDb-style info and links to trailers
-- Responsive UI built with Tailwind CSS and ShadCN components
-- Express.js backend with MySQL database
+- 🔐 Account creation and secure login (with bcrypt password hashing)
+- 🧑🏼‍🎨 Custom avatar selector on signup for personalized profiles
+- 🔎 Searchable movie library
+- ❤️ Add and remove movies from your personal watchlist
+- ✏️ Leave reviews and ratings
+- 🎞️ Pop-up movie detail modals with IMDb-style info and links to trailers
+- 📱 Responsive and mobile-friendly layout
+- 🔄 Real time UI updates using React state
+- 🧰 Clean UI using Tailwind CSS and ShadCN
+- 🛠️ Includes a modular backend setup that allows you to customize and extend your own movie database
 
 # Screenshots
 
@@ -46,12 +48,12 @@ _Landing Page - Where users can login or sign up_
 git clone https://github.com/wilkofm/capstone-project.git
 cd capstone-project
 
-# In /backend
+- In /backend
 
 npm install
 npm run dev
 
-# In /frontend (open new terminal)
+- In /frontend (open new terminal)
 
 npm install
 npm run dev
@@ -66,3 +68,19 @@ npm run dev
 - Backend: Node.js, Express, MySQL, Sequelize ORM
 - Authentication: bcrypt
 - Testing: ThunderClient for API testing
+
+# Project Timeline
+
+This project was developed over a 4-week sprint as part of my software engineering capstone.
+
+# Testing Strategy
+
+- Manual testing of each feature (signup, login, like/unlike, post review)
+- Edge case testing for login errors, empty search, and duplicate watchlist entries
+- Console-based testing for database and API integrity
+- ThunderClient used for backend endpoint validation
+
+# Contact
+
+Created by Max Wilkinson
+[Github] (https://github.com/wilkofm) | [LinkedIn] (https://www.linkedin.com/in/max-wilkinson-b35aa29b/)

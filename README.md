@@ -43,8 +43,8 @@ _Landing Page - Where users can login or sign up_
 
 - Clone and import the files within this GitHub project into your development environment:
 
-git clone https://github.com/your-username/cinemax.git
-cd cinemax
+git clone https://github.com/wilkofm/capstone-project.git
+cd capstone-project
 
 # In /backend
 

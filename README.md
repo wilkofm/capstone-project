@@ -16,14 +16,14 @@ CineMax enhances the movie-tracking process for users and simplifies the decisio
 
 # Features
 
-*Account creation and secure login (with bcrypt password hashing)
-*Avatar selector on signup for personalized profiles
-*Searchable movie library
-*Add and remove movies from your personal watchlist
-*Leave reviews and ratings
-*Pop-up movie detail modals with IMDb-style info and links to trailers
-*Responsive UI built with Tailwind CSS and ShadCN components
-*Express.js backend with MySQL database
+- Account creation and secure login (with bcrypt password hashing)
+- Avatar selector on signup for personalized profiles
+- Searchable movie library
+- Add and remove movies from your personal watchlist
+- Leave reviews and ratings
+- Pop-up movie detail modals with IMDb-style info and links to trailers
+- Responsive UI built with Tailwind CSS and ShadCN components
+- Express.js backend with MySQL database
 
 # Screenshots
 
@@ -41,7 +41,7 @@ _Landing Page - Where users can login or sign up_
 
 # Installation Instructions
 
-\*Clone and import the files within this GitHub project into your development environment:
+- Clone and import the files within this GitHub project into your development environment:
 
 git clone https://github.com/your-username/cinemax.git
 cd cinemax
@@ -56,13 +56,13 @@ npm run dev
 npm install
 npm run dev
 
-*Install relevant libraries used to run this project (listed in Tech Stack below)
-*Update the .env with your database details
-\*Post a selection of films to your database
+- Install relevant libraries used to run this project (listed in Tech Stack below)
+- Update the .env with your database details
+- Post a selection of films to your database
 
 # Tech Stack
 
-*Frontend: React, Tailwind CSS, ShadCN, Vite, Iconify
-*Backend: Node.js, Express, MySQL, Sequelize ORM
-*Authentication: bcrypt
-*Testing: ThunderClient for API testing
+- Frontend: React, Tailwind CSS, ShadCN, Vite, Iconify
+- Backend: Node.js, Express, MySQL, Sequelize ORM
+- Authentication: bcrypt
+- Testing: ThunderClient for API testing

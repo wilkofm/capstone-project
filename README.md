@@ -1,6 +1,6 @@
-# capstone-project
+# CineMax
 
-🎬 CineMax - Movies To The Max
+🎬 **CineMax** - Movies To The Max
 
 Your ultimate hub for tracking, rating, and discovering movies!
 
